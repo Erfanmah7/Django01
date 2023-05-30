@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+
+{% block title %} hello-home {% endblock  %}
+
+{% block content %}
+
+{% comment %} request.user.username {% endcomment %}
+<p>{{ request.user }}</p>
+
+{% if request.user.is_authenticated %}
+
+    <a href='{% url 'user_logout' %}'>Logout</a>
+
+{% else %}
+
+    <a href='{% url 'user_ login' %}'>Login</a>
+    <a href='{% url 'user_register' %}'>Register</a>
+
+{% endif %} 
+
+<br><br>
+
+<div class='card'>
+{% for todo in Todos %}
+
+<a class='card-body' href="{% url 'details' todo.id %}"><h5>hello {{todo.Name|capfirst}}</h5></a>
+
+{% endfor %}
+
+</div>
+
+<br>
+
+<a class='btn btn-success' href="{% url 'create' %}" style='margin-bottom: 20px;'>Create</a>
+
+{% endblock  %} 
